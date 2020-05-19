@@ -7,7 +7,7 @@
     "start": "npm run monitor && npm run pack",
     "monitor": "nodemon src/server.js",
     "pack": "webpack src/index.js --output public/js/index.js -d --watch",
-    "build": "webpack src/index.js --output bin/app.js -p",
+    "build": "webpack src/index.js --output public/js/index.js -p",
     "test": "echos \"Error: no test specified\" && exit 1",
     "production": "npm build && node src/server.js"
   },
