@@ -1,4 +1,16 @@
 const m = require('mithril')
-const piece = require('./models/ControlsPiece')
+const Layout = require('./models/Layout')
+const Overview = require('./models/Overview')
 
-m.render(document.body, m(piece, { imgpath: 'stove.jpg', text: 'Stove' }))
+m.route(document.body, '/Overview', {
+  '/Overview': {
+    render: function () {
+      return m(Layout, m(Overview))
+    }
+  },
+  '/Socket-Controls': {
+    render: function () {
+      return m(Layout, m(''))
+    }
+  }
+})

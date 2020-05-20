@@ -4,15 +4,25 @@
     <title>Title</title>
 </head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<body class="w3-dark-grey"  style="height:100vh; width: 100vw;"></body>
 
-<link rel="stylesheet" href="css/w3.css">
-<link rel="stylesheet" href="css/toggle.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+  let overlayBg = document.getElementById("myOverlay");
 
-<body>
-</body>
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+      overlayBg.style.display = "none";
+    } else {
+      mySidebar.style.display = 'block';
+      overlayBg.style.display = "block";
+    }
+  }
+
+  function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+  }
+</script>
 <script src="js/index.js"></script>
 </html>
