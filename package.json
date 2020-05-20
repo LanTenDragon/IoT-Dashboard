@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
+  "test": "mocha",
   "scripts": {
-    "start": "npm run monitor && npm run pack",
+    "start": "npm run pack & npm run monitor",
     "monitor": "nodemon src/server.js",
     "pack": "webpack src/index.js --output public/js/index.js -d --watch",
     "build": "webpack src/index.js --output public/js/index.js -p",
-    "test": "echos \"Error: no test specified\" && exit 1",
+    "test": "ospec  --preload src/test-setup.js",
     "production": "npm build && node src/server.js"
   },
   "author": "",
@@ -21,7 +22,10 @@
   },
   "devDependencies": {
     "eslint": "^7.0.0",
+    "jsdom": "^16.2.2",
+    "mithril-query": "^3.1.0",
     "nodemon": "^2.0.4",
+    "ospec": "^4.1.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   }
