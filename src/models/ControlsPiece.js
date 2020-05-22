@@ -1,9 +1,16 @@
 const m = require('mithril')
+const Sockets = require('./SocketsCollection')
 
 function Piece () {
   return {
     view: function (vnode) {
-      return m('div', { class: 'w3-card-2' },
+      return m('div',
+        {
+          onclick: function () {
+            vnode.attrs.type === 'group' ? Sockets.set(vnode.attrs.group) : ''
+          },
+          class: 'w3-card-2'
+        },
         m('div', { class: 'w3-row', style: { display: 'flex' } },
           [
             m('div', { class: 'w3-col s4 m5 l4' },
