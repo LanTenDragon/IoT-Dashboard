@@ -6,11 +6,12 @@
   "test": "mocha",
   "scripts": {
     "start": "npm run pack & npm run monitor",
-    "monitor": "nodemon src/server.js",
+    "monitor": "cross-env NODE_ENV=development nodemon src/server.js",
     "pack": "webpack src/index.js --output public/js/index.js -d --watch",
     "build": "webpack src/index.js --output public/js/index.js -p",
-    "test": "ospec  --preload src/test-setup.js",
-    "production": "npm build && node src/server.js"
+    "test": "cross-env NODE_ENV=test ospec  --preload src/test-setup.js",
+    "production": "cross-env NODE_ENV=production npm build && node src/server.js",
+    "webpack": "webpack --config ./webpack.conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "standard": "^14.3.4"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
     "jsdom": "^16.2.2",
     "mithril-query": "^3.1.0",
