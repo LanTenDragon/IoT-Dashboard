@@ -1,5 +1,5 @@
 const m = require('mithril')
-const ControlsPiece = require('./ControlsPiece')
+const SocketPiece = require('./SocketPiece')
 
 const SocketData = {
   sockets: {
@@ -35,7 +35,7 @@ const SocketsCollection = {
         }
       })
       if (display) {
-        return m(ControlsPiece, item)
+        return m(SocketPiece, item)
       }
     })
   }
