@@ -18,7 +18,7 @@ function Piece () {
               m('div', { class: 'w3-col s4 m5 l4' },
                 m('div', { class: 'w3-container' },
                   m('p',
-                    "hiiiii"
+                    vnode.attrs.text
                   )
                 )
               ),
