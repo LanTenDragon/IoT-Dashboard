@@ -1,6 +1,6 @@
 const m = require('mithril')
-const Sockets = require('../models/SocketsCollection')
-const Groups = require('../models/GroupsCollection')
+const Sockets = require('../Collections/SocketsCollection')
+const Groups = require('../Collections/GroupsCollection')
 
 const SocketControls = {
   view: function () {

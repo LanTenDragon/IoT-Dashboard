@@ -1,5 +1,5 @@
 const m = require('mithril')
-const ControlsPiece = require('./GroupsPiece')
+const ControlsPiece = require('../models/GroupsPiece')
 
 const GroupData = {
   groups: {

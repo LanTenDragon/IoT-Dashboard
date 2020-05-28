@@ -1,5 +1,5 @@
 const m = require('mithril')
-const Sockets = require('./SocketsCollection')
+const Sockets = require('../Collections/SocketsCollection')
 
 function Piece () {
   return {

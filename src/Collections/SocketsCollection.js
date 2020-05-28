@@ -1,5 +1,5 @@
 const m = require('mithril')
-const SocketPiece = require('./SocketPiece')
+const SocketPiece = require('../models/SocketPiece')
 
 const SocketData = {
   sockets: {
