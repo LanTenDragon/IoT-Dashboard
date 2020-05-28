@@ -27,17 +27,20 @@ const SocketsCollection = {
   },
   oninit: SocketData.sockets.fetch(),
   view: function () {
-    return SocketData.sockets.list.map(function (item) {
-      let display = false
+    let display = false
+    SocketData.sockets.list.map(function (item) {
       item.group.map(function (item2) {
         if (item2 === SocketsCollection.currentGroup) {
           display = true
         }
       })
-      if (display) {
-        return m(SocketPiece, item)
-      }
     })
+
+    if (display) {
+      return SocketData.sockets.list.map(function (item) {
+        return m(SocketPiece, item)
+      })
+    } else return m('p', 'There are no sockets in this group')
   }
 }
 
