@@ -6,9 +6,7 @@ function Piece () {
     view: function (vnode) {
       return m('div',
         {
-          onclick: function () {
-            vnode.attrs.type === 'group' ? Sockets.set(vnode.attrs.group) : ''
-          },
+          onclick: function () { Sockets.set(vnode.attrs.group) },
           class: 'w3-card-2'
         },
         m('div', { class: 'w3-row', style: { display: 'flex' } },

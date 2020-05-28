@@ -1,6 +1,6 @@
 const mq = require('mithril-query')
 const o = require('ospec')
-const Piece = require('../models/ControlsPiece')
+const Piece = require('../models/GroupsPiece')
 
 o.spec('Piece', function () {
   o("says 'Hello, world!' when `type` is `hello`", function () {
