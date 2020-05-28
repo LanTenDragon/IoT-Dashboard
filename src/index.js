@@ -1,7 +1,7 @@
 const m = require('mithril')
 const Layout = require('./models/Layout')
-const Overview = require('./models/Overview')
-const SocketControls = require('./models/SocketControls')
+const Overview = require('./Pages/Overview')
+const SocketControls = require('./Pages/SocketControls')
 
 m.route(document.body, '/Overview', {
   '/Overview': {
