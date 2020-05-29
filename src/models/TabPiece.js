@@ -1,5 +1,5 @@
 const m = require('mithril')
-const PortNo = process.env.PORT || 3000
+const PortNo = 3001
 const url = 'http://localhost:' + PortNo + '/index.html#!'
 
 let active = 0
@@ -47,7 +47,8 @@ const tabArray = {
     return m(Tabs, [
       m(Tab, { link: 'Overview' }, 'Overview'),
       m(Tab, { link: 'Socket-Controls' }, 'Socket Controls'),
-      m(Tab, { link: 'Add-Remove-Sockets' }, 'Add/Remove Sockets')
+      m(Tab, { link: 'Add-Remove-Sockets' }, 'Manage Sockets'),
+      m(Tab, { link: 'Add-Groups' }, 'Add Groups')
     ])
   }
 }
