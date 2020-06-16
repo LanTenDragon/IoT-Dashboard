@@ -1,6 +1,33 @@
 const m = require('mithril')
 
-function Piece () {
+const SocketData = {
+  state: {
+    list: [],
+    fetch: function () {
+      m.request({
+        method: 'GET',
+        url: 'http://localhost:8080/sockets'
+      })
+        .then(function (items) {
+          SocketData.state.list = items
+        })
+    },
+    updateState: function (socketId, status) {
+      m.request({
+        method: 'PUT',
+        url: 'http://localhost:8080/sockets/' + socketId + '/state',
+        body: { socketState: status ? 'on' : 'off' }
+      })
+        .then(function (items) {
+          console.log(items)
+          SocketData.state.list = items
+        })
+    }
+  }
+}
+
+function Piece ({ attrs: { _id } }) {
+  const i = SocketData.state.list.findIndex(x => x._id === _id)
   return {
     view: function (vnode) {
       return m('div',
