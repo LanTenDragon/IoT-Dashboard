@@ -45,7 +45,7 @@ function Piece ({ attrs: { _id } }) {
               m('div', { class: 'w3-col s4 m5 l4' },
                 m('div', { class: 'w3-container' },
                   m('p',
-                    vnode.attrs.text
+                    SocketData.state.list[i].name
                   )
                 )
               ),
@@ -74,4 +74,4 @@ function Piece ({ attrs: { _id } }) {
   }
 }
 
-module.exports = Piece
+module.exports = { Piece, SocketData }
