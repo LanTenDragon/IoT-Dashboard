@@ -29,7 +29,7 @@ const SocketData = {
 function Piece ({ attrs: { _id } }) {
   const i = SocketData.state.list.findIndex(x => x._id === _id)
   return {
-    view: function (vnode) {
+    view: function () {
       return m('div',
         {
           class: 'w3-panel', style: { width: '48%' }
