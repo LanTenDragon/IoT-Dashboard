@@ -5,17 +5,13 @@ const SocketData = {
   sockets: {
     list: [],
     fetch: function () {
-      // m.request({
-      //   method: 'GET',
-      //   url: 'http://localhost:8080/socket/get'
-      // })
-      //   .then(function (items) {
-      //     SocketData.sockets.list = items
-      //   })
-      SocketData.sockets.list = [
-        { imgpath: 'stove.jpg', text: 'Stove', group: [1, 2] },
-        { imgpath: 'toaster.jpg', text: 'Toaster', group: [2] }
-      ]
+      m.request({
+        method: 'GET',
+        url: 'http://localhost:8080/sockets'
+      })
+        .then(function (items) {
+          SocketData.sockets.list = items
+        })
     }
   }
 }
@@ -29,7 +25,7 @@ const SocketsCollection = {
   view: function () {
     let display = false
     SocketData.sockets.list.map(function (item) {
-      item.group.map(function (item2) {
+      item.groups.map(function (item2) {
         if (item2 === SocketsCollection.currentGroup) {
           display = true
         }
@@ -40,7 +36,7 @@ const SocketsCollection = {
       return SocketData.sockets.list.map(function (item) {
         return m(SocketPiece, item)
       })
-    } else return m('p', 'There are no sockets in this group')
+    } else return m('p', 'Currently no sockets to display')
   }
 }
 
