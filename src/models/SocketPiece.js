@@ -39,7 +39,7 @@ function Piece ({ attrs: { _id } }) {
             [
               m('div', { class: 'w3-col s4 m5 l4' },
                 m('div', { style: { height: '100%' } },
-                  m('img', { class: 'w3-image', src: 'img/' + vnode.attrs.imgpath, style: { width: '100%', height: '100%', margin: 'auto' } })
+                  m('img', { class: 'w3-image', src: 'http://localhost:8080/img/' + SocketData.state.list[i].image, style: { width: '100%', height: '100%', margin: 'auto' } })
                 )
               ),
               m('div', { class: 'w3-col s4 m5 l4' },
