@@ -10,8 +10,8 @@
     "pack": "webpack src/index.js --output public/js/index.js -d --watch",
     "build": "webpack src/index.js --output public/js/index.js -p",
     "test": "cross-env NODE_ENV=test ospec  --preload src/test-setup.js",
-    "production": "cross-env NODE_ENV=production npm build && node src/server.js",
-    "webpack": "webpack --config ./webpack.conf.js"
+    "production": "cross-env NODE_ENV=production npm run-script build && node src/server.js",
+    "webpack": "webpack --output public/js/index.js -d --watch"
   },
   "author": "",
   "license": "ISC",
