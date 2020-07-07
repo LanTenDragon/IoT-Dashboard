@@ -1,6 +1,6 @@
 'use strict'
 
-require('dotenv').config()
+require('dotenv').config({ path: '.env.' + process.env.NODE_ENV })
 const Logger = require('./logger')
 const port = process.env.PORT || 3000
 
