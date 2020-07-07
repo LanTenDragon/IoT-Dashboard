@@ -1,4 +1,6 @@
 const m = require('mithril')
+const url = process.env.URL
+/* global localStorage */
 
 const SocketData = {
   state: {
@@ -6,7 +8,7 @@ const SocketData = {
     fetch: function () {
       m.request({
         method: 'GET',
-        url: 'http://localhost:8080/sockets'
+        url: url + '/sockets/belongingto/' + localStorage.getItem('userid')
       })
         .then(function (items) {
           SocketData.state.list = items
@@ -15,21 +17,20 @@ const SocketData = {
     updateState: function (socketId, status) {
       m.request({
         method: 'PUT',
-        url: 'http://localhost:8080/sockets/' + socketId + '/state',
+        url: url + '/' + socketId + '/state',
         body: { socketState: status ? 'on' : 'off' }
       })
         .then(function (items) {
-          console.log(items)
           SocketData.state.list = items
         })
     }
   }
 }
 
-function Piece ({ attrs: { _id } }) {
-  const i = SocketData.state.list.findIndex(x => x._id === _id)
+function Piece () {
   return {
-    view: function () {
+    view: function (vnode) {
+      const i = SocketData.state.list.findIndex(x => x._id === vnode.attrs._id)
       return m('div',
         {
           class: 'w3-panel', style: { width: '48%' }
@@ -39,7 +40,7 @@ function Piece ({ attrs: { _id } }) {
             [
               m('div', { class: 'w3-col s4 m5 l4' },
                 m('div', { style: { height: '100%' } },
-                  m('img', { class: 'w3-image', src: 'http://localhost:8080/img/' + SocketData.state.list[i].image, style: { width: '100%', height: '100%', margin: 'auto' } })
+                  m('img', { class: 'w3-image', src: url + '/img/' + SocketData.state.list[i].image, style: { width: '100%', height: '100%', margin: 'auto' } })
                 )
               ),
               m('div', { class: 'w3-col s4 m5 l4' },

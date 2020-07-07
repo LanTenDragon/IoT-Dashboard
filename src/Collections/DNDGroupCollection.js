@@ -1,6 +1,7 @@
 const m = require('mithril')
 const DNDGroupsPiece = require('../models/DNDGroupsPiece')
 const DND = require('mithril-dnd')
+const url = process.env.URL || 'http://localhost:3001'
 m(DND.mirror)
 
 const GroupData = {
@@ -9,7 +10,7 @@ const GroupData = {
     fetch: function () {
       m.request({
         method: 'GET',
-        url: 'http://localhost:8080/groups'
+        url: url + '/groups'
       })
         .then(function (items) {
           GroupData.groups.list = items

@@ -1,6 +1,6 @@
 const m = require('mithril')
-const PortNo = 3001
-const url = 'http://localhost:' + PortNo + '/index.html#!'
+const frontendUrl = process.env.FRONTEND + '/#!'
+/* global location */
 
 let active = 0
 let tabs = 0
@@ -14,13 +14,13 @@ const Tab = {
   view: function ({ children, attrs: { tab = tabs++, link } }) {
     return m('button',
       {
-        class: location.href === url + link
+        class: location.href === frontendUrl + link || location.href === frontendUrl + '/' + link
           ? 'w3-bar-item w3-button w3-padding w3-blue'
           : 'w3-bar-item w3-button w3-padding',
         type: 'button',
         onclick: function () {
           active = tab
-          location.href = '#!' + link
+          location.href = frontendUrl + link
         }
       },
       children

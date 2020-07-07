@@ -1,6 +1,7 @@
 const m = require('mithril')
 const DNDSocketPiece = require('../models/DNDSocketPiece')
 const DND = require('mithril-dnd')
+const url = process.env.URL
 m(DND.mirror)
 
 const SocketData = {
@@ -9,7 +10,7 @@ const SocketData = {
     fetch: function () {
       m.request({
         method: 'GET',
-        url: 'http://localhost:8080/sockets'
+        url: url + '/sockets'
       })
         .then(function (items) {
           SocketData.sockets.list = items

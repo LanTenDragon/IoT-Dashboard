@@ -1,5 +1,7 @@
 const m = require('mithril')
 const GroupsPiece = require('../models/GroupsPiece')
+const url = process.env.URL
+/* global localStorage  */
 
 const GroupData = {
   groups: {
@@ -7,10 +9,17 @@ const GroupData = {
     fetch: function () {
       m.request({
         method: 'GET',
-        url: 'http://localhost:8080/groups'
+        url: url + '/groups/belongingto/' + localStorage.getItem('userid')
       })
         .then(function (items) {
           GroupData.groups.list = items
+          const ungrouped = {
+            status: false,
+            image: 'power-symbol.jpg',
+            _id: '0',
+            name: 'Ungrouped'
+          }
+          GroupData.groups.list.push(ungrouped)
         })
     }
   }
