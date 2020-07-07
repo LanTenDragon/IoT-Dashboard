@@ -1,15 +1,10 @@
 const m = require('mithril')
-
-const Data = {
-  name: '',
-  colour: '',
-  status: false
-
-}
+const Layout = require('../models/Layout')
+const url = process.env.URL
 
 const AddGroup = {
   view: function () {
-    return m('form', {
+    return m(Layout, {
       class: 'w3-container w3-card-4',
       id: 'AddGroupsForm',
       style: { width: '50%' },
@@ -19,7 +14,7 @@ const AddGroup = {
         console.log(data[1].value)
         m.request({
           method: 'POST',
-          url: 'http://localhost:8080/groups/',
+          url: url + '/groups/',
           body: { name: data[0].value, colour: data[1].value }
         })
           .then(function (result) {

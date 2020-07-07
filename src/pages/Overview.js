@@ -1,9 +1,10 @@
 const m = require('mithril')
+const Layout = require('../models/Layout')
 
 const Overview = {
   view: function () {
-    return m('div', { class: 'w3-animate-opacity', id: 'Overview' },
-      m('div', { class: 'w3-main' },
+    return m('div', {},
+      m(Layout, { class: 'w3-main' },
         [
           m('header', { class: 'w3-container' },
             m('h5',
@@ -92,7 +93,7 @@ const Overview = {
             ]
           ),
           m('div', { class: 'chart-container', id: 'canvas-container' },
-            m('canvas', { id: 'myChart', width: '100', height: '100' })
+            m('canvas', { id: 'myChart', width: '100', height: '95' })
           )
         ]
       )

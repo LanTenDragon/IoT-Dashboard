@@ -1,10 +1,11 @@
 const m = require('mithril')
 const Sockets = require('../Collections/SocketsCollection')
 const Groups = require('../Collections/GroupsCollection')
+const Layout = require('../models/Layout')
 
 const SocketControls = {
   view: function () {
-    return m('',
+    return m(Layout,
       [
         m('header', { class: 'w3-animate-opacity w3-container' },
           m('h5',

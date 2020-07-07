@@ -2,10 +2,11 @@ const m = require('mithril')
 const DNDGroup = require('../Collections/DNDGroupCollection')
 const DNDInclusiveSocket = require('../Collections/DNDInclusiveSocketCollection')
 const DNDExclusiveSocket = require('../Collections/DNDExclusiveSocketCollection')
+const Layout = require('../models/Layout')
 
 const SocketControls = {
   view: function () {
-    return m('',
+    return m(Layout,
       m('div',
         m('div', { class: 'w3-animate-opacity w3-row', id: 'socket-container', style: { height: '100%' } },
           [
