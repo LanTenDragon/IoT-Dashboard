@@ -1,29 +1,35 @@
 const m = require('mithril')
-const Layout = require('./models/Layout')
-const Overview = require('./Pages/Overview')
-const SocketControls = require('./Pages/SocketControls')
-const Management = require('./Pages/ManageSocketsGroups')
-const AddGroups = require('./Pages/AddGroups')
+const Overview = require('./pages/Overview')
+const SocketControls = require('./pages/SocketControls')
+const Management = require('./pages/ManageSocketsGroups')
+const AddGroups = require('./pages/AddGroups')
+/* global localStorage */
 
-m.route(document.body, '/Overview', {
+m.route(document.body, '/Login', {
   '/Overview': {
-    render: function () {
-      return m(Layout, m(Overview))
+    onmatch: function () {
+      if (!localStorage.getItem('token')) m.route.set('/Login')
+      else return Overview
     }
   },
   '/Socket-Controls': {
-    render: function () {
-      return m(Layout, m(SocketControls))
+    onmatch: function () {
+      if (!localStorage.getItem('token')) m.route.set('/Login')
+      else return SocketControls
     }
   },
   '/Add-Remove-Sockets': {
-    render: function () {
-      return m(Layout, m(Management))
+    onmatch: function () {
+      if (!localStorage.getItem('token')) m.route.set('/Login')
+      else return Management
     }
   },
   '/Add-Groups': {
-    render: function () {
-      return m(Layout, m(AddGroups))
+    onmatch: function () {
+      if (!localStorage.getItem('token')) m.route.set('/Login')
+      else return AddGroups
     }
-  }
+  },
+  '/Login': require('./pages/Login'),
+  '/Register': require('./pages/Register')
 })
