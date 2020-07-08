@@ -2,7 +2,7 @@
 
 require('dotenv').config({ path: '.env.' + process.env.NODE_ENV })
 const Logger = require('./logger')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 
 const express = require('express')
 const app = express()
