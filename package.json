@@ -11,7 +11,8 @@
     "build": "webpack src/index.js --output public/js/index.js -p",
     "test": "cross-env NODE_ENV=test ospec  --preload src/test-setup.js",
     "production": "cross-env NODE_ENV=production npm run-script build && node src/server.js",
-    "webpack": "webpack src/index.js -- --output public/js/index.js -d --watch"
+    "webpack": "webpack src/index.js -- --output public/js/index.js -d --watch",
+    "prodpack": "webpack src/index.js --output public/js/index.js -p"
   },
   "author": "",
   "license": "ISC",
