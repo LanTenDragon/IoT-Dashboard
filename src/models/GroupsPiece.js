@@ -8,7 +8,6 @@ function Piece () {
       return m('div',
         {
           onclick: function () {
-            console.log(vnode.attrs._id)
             Sockets.set(vnode.attrs._id)
           },
           class: vnode.attrs._id === Sockets.currentGroup ? 'w3-card-2 w3-blue' : 'w3-card-2'
