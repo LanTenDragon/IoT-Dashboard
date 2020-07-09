@@ -26,7 +26,7 @@ const GroupData = {
 }
 
 const GroupsCollection = {
-  oninit: GroupData.groups.fetch(),
+  oninit: GroupData.groups.fetch,
   view: function () {
     return GroupData.groups.list.map(function (item) {
       return m(GroupsPiece, item)
