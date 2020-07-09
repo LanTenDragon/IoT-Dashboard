@@ -12,7 +12,7 @@
     "test": "cross-env NODE_ENV=test ospec  --preload src/test-setup.js",
     "production": "cross-env NODE_ENV=production npm run-script build && node src/server.js",
     "webpack": "webpack src/index.js -- --output public/js/index.js -d --watch",
-    "prodpack": "webpack src/index.js --output public/js/index.js -p"
+    "prodpack": "webpack src/index.js --config webpack.conf.js -p --env.ENVIRONMENT=prod"
   },
   "author": "",
   "license": "ISC",
