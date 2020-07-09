@@ -1,5 +1,98 @@
 const m = require('mithril')
 const Layout = require('../models/Layout')
+const Chart = require('chart.js')
+require('chartjs-plugin-streaming')
+const mqtt = require('mqtt')
+const MqttClient = mqtt.connect('ws://lantendragon.southeastasia.cloudapp.azure.com:8083/mqtt')
+
+MqttClient.subscribe('socket/+/+/power', function (err) {
+  if (!err) {
+    console.log('Subscribed to socket power tree topic')
+  }
+})
+
+function chartPiece () {
+  return {
+    oncreate: function () {
+      const ctx = document.getElementById('chart').getContext('2d')
+      Chart.defaults.global.defaultFontColor = 'white'
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: 'High Power Socket',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            lineTension: 0,
+            data: []
+          }, {
+            label: 'Low Power Socket',
+            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            data: []
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          title: {
+            display: true,
+            text: 'Simulated Socket Data'
+          },
+          scales: {
+            xAxes: [{
+              type: 'realtime',
+              realtime: {
+                duration: 60000,
+                delay: 1000,
+                frameRate: 60,
+                refresh: 50,
+                pause: false
+              }
+            }],
+            yAxes: [{
+              type: 'linear',
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Watts'
+              }
+            }]
+          },
+          tooltips: {
+            mode: 'nearest',
+            intersect: false
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: false
+          },
+          plugins: {
+            streaming: {
+              frameRate: 30
+            }
+          }
+        }
+      })
+      MqttClient.on('message', function (topic, message) {
+        const POJO = JSON.parse(message.toString())
+        const dataset = POJO.id === '5f048ae68ade5f0a6c64905c' ? 0 : 1
+        myChart.data.datasets[dataset].data.push({
+          x: Date.now(),
+          y: POJO.power
+        })
+
+        myChart.update({
+          preservation: true
+        })
+      })
+    },
+    view: function () {
+      return m('div', { class: 'chart-container w3-padding-16', style: { position: 'relative', margin: 'auto', height: '70vh', width: '80vw' } },
+        m('canvas', { id: 'chart' })
+      )
+    }
+  }
+}
 
 const Overview = {
   view: function () {
@@ -92,9 +185,7 @@ const Overview = {
               )
             ]
           ),
-          m('div', { class: 'chart-container', id: 'canvas-container' },
-            m('canvas', { id: 'myChart', width: '100', height: '95' })
-          )
+          m(chartPiece)
         ]
       )
     )
