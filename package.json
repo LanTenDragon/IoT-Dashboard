@@ -7,6 +7,7 @@
   "scripts": {
     "start": "npm run pack & npm run monitor",
     "monitor": "cross-env NODE_ENV=development nodemon src/server.js",
+    "devpack": "webpack -d --watch --config webpack.conf.js --env.ENVIRONMENT=dev",
     "pack": "webpack -d --watch --config webpack.conf.js --env.ENVIRONMENT=prod",
     "build": "webpack src/index.js --output public/js/index.js -p",
     "test": "cross-env NODE_ENV=test ospec  --preload src/test-setup.js",
