@@ -72,7 +72,7 @@ const Login = {
                     }
                   }),
                   m('br'),
-                  m('div', { class: 'w3-text-red' }, !Auth.passwordMatching ? 'Password does not match' : ''),
+                  m('div', { class: 'w3-text-red' }, !Auth.passwordMatching && Auth.reenteredpassword !== '' ? 'Password does not match' : ''),
                   m('button', { class: 'w3-button w3-block w3-green w3-section w3-padding', disabled: !Auth.canSubmitRegister(), onclick: Auth.register }, 'Register'),
                   m('div', { class: 'w3-text-red' }, Auth.registerError)
                 ]
