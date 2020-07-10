@@ -6,7 +6,7 @@ module.exports = (env, argv) => {
   const shouldWatch = env.ENVIRONMENT === 'dev'
 
   return {
-    mode: shouldWatch ? 'development' : 'production',
+    mode: shouldWatch,
     entry: './src/index.js',
     watch: shouldWatch,
     output: {
