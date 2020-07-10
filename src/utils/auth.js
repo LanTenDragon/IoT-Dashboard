@@ -15,7 +15,7 @@ const Auth = module.exports = {
   validUsername: true,
   validPassword: true,
   validRenteredPassword: true,
-  passwordMatching: true,
+  passwordMatching: false,
 
   setUsername: function (value) {
     Auth.username = value
@@ -30,8 +30,8 @@ const Auth = module.exports = {
     Auth.validRenteredPassword = passwordRegex.exec(Auth.reenteredpassword)
     Auth.passwordMatching = Auth.password === Auth.reenteredpassword
   },
-  canSubmit: function () { return Auth.validUsername && Auth.validPassword },
-  canSubmitRegister: function () { return Auth.validUsername && Auth.validPassword && Auth.validRenteredPassword && Auth.passwordMatching },
+  canSubmit: function () { return Auth.validUsername && Auth.validPassword && Auth.username !== '' && Auth.password !== '' },
+  canSubmitRegister: function () { return Auth.validUsername && Auth.validPassword && Auth.validRenteredPassword && Auth.passwordMatching && Auth.username !== '' && Auth.password !== '' && Auth.reenteredpassword !== '' },
   authorised: function () {
     return localStorage.getItem('token') !== ''
   },
@@ -48,6 +48,7 @@ const Auth = module.exports = {
       .then(function (res) {
         localStorage.setItem('userid', res.id)
         localStorage.setItem('token', res.accessToken)
+        localStorage.setItem('username', Auth.username)
         Auth.error = ''
         m.route.set('/Overview')
       })
@@ -66,7 +67,7 @@ const Auth = module.exports = {
   // },
 
   register: function () {
-    return m.request({
+    m.request({
       method: 'POST',
       url: url + '/register',
       body: {
