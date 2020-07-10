@@ -3,7 +3,7 @@ const Layout = require('../models/Layout')
 const Chart = require('chart.js')
 require('chartjs-plugin-streaming')
 const mqtt = require('mqtt')
-const MqttClient = mqtt.connect('ws://lantendragon.southeastasia.cloudapp.azure.com:8083/mqtt')
+const MqttClient = mqtt.connect('wss://lantendragon.southeastasia.cloudapp.azure.com:8084/mqtt')
 
 MqttClient.subscribe('socket/+/+/power', function (err) {
   if (!err) {
