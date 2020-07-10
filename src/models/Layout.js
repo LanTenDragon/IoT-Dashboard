@@ -1,5 +1,6 @@
 const m = require('mithril')
 const tabArray = require('./TabPiece')
+/* global localStorage */
 
 const Layout = {
   view: function (vnode) {
@@ -50,7 +51,7 @@ const Layout = {
                     [
                       'Welcome, ',
                       m('strong',
-                        'Siang'
+                        localStorage.getItem('username')
                       )
                     ]
                   ),
