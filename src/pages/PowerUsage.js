@@ -47,7 +47,7 @@ const PowerUsage = {
                     )
                   ]
                 ),
-                UsageData.data.list
+                UsageData.data.list === []
                   ? m('tr',
                     m('td',
                       'No data yet...Please Check back later!'
