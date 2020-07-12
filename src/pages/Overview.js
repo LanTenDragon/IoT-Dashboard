@@ -4,6 +4,8 @@ const Chart = require('chart.js')
 require('chartjs-plugin-streaming')
 const mqtt = require('mqtt')
 const MqttClient = mqtt.connect('wss://lantendragon.southeastasia.cloudapp.azure.com:8084/mqtt')
+const url = process.env.URL
+/* global localStorage */
 
 MqttClient.subscribe('socket/+/+/power', function (err) {
   if (!err) {
@@ -94,7 +96,50 @@ function chartPiece () {
   }
 }
 
+const StatisticsData = {
+  stats: {
+    active: {},
+    inactive: {},
+    total: {},
+    unassigned: {},
+    fetch: () => {
+      m.request({
+        method: 'GET',
+        url: url + '/statistics/' + localStorage.getItem('userid') + '/active'
+      })
+        .then((res) => {
+          StatisticsData.stats.active = res
+        })
+
+      m.request({
+        method: 'GET',
+        url: url + '/statistics/' + localStorage.getItem('userid') + '/inactive'
+      })
+        .then((res) => {
+          StatisticsData.stats.inactive = res
+        })
+
+      m.request({
+        method: 'GET',
+        url: url + '/statistics/' + localStorage.getItem('userid') + '/total'
+      })
+        .then((res) => {
+          StatisticsData.stats.total = res
+        })
+
+      m.request({
+        method: 'GET',
+        url: url + '/statistics/' + localStorage.getItem('userid') + '/unassigned'
+      })
+        .then((res) => {
+          StatisticsData.stats.unassigned = res
+        })
+    }
+  }
+}
+
 const Overview = {
+  oninit: StatisticsData.stats.fetch,
   view: function () {
     return m(Layout, { class: 'w3-main' },
       [
@@ -118,7 +163,7 @@ const Overview = {
                   ),
                   m('div', { class: 'w3-right' },
                     m('h3',
-                      '52'
+                      Object.keys(StatisticsData.stats.active).length !== 0 ? '' : StatisticsData.stats.active.toString()
                     )
                   ),
                   m('div', { class: 'w3-clear' }),
@@ -136,7 +181,7 @@ const Overview = {
                   ),
                   m('div', { class: 'w3-right' },
                     m('h3',
-                      '99'
+                      Object.keys(StatisticsData.stats.total).length !== 0 ? '' : StatisticsData.stats.total.toString()
                     )
                   ),
                   m('div', { class: 'w3-clear' }),
@@ -154,7 +199,7 @@ const Overview = {
                   ),
                   m('div', { class: 'w3-right' },
                     m('h3',
-                      '23'
+                      Object.keys(StatisticsData.stats.inactive).length !== 0 ? '' : StatisticsData.stats.inactive.toString()
                     )
                   ),
                   m('div', { class: 'w3-clear' }),
@@ -172,7 +217,7 @@ const Overview = {
                   ),
                   m('div', { class: 'w3-right' },
                     m('h3',
-                      '50'
+                      Object.keys(StatisticsData.stats.inactive).length !== 0 ? '' : StatisticsData.stats.unassigned.toString()
                     )
                   ),
                   m('div', { class: 'w3-clear' }),
