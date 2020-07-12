@@ -47,27 +47,18 @@ const PowerUsage = {
                     )
                   ]
                 ),
-                UsageData.data.list
-                  ? m('tr',
-                    m('td',
-                      'No data yet...Please Check back later!'
-                    ),
-                    m('td',
-                      ''
-                    )
+                UsageData.data.list.map(item => {
+                  return m('tr',
+                    [
+                      m('td',
+                        item.name
+                      ),
+                      m('td',
+                        item.total
+                      )
+                    ]
                   )
-                  : UsageData.data.list.map(item => {
-                    m('tr',
-                      [
-                        m('td',
-                          item.name
-                        ),
-                        m('td',
-                          item.total
-                        )
-                      ]
-                    )
-                  })
+                })
               ]
             )
           ),
