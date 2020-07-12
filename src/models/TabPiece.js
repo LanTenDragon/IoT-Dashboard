@@ -47,8 +47,7 @@ const tabArray = {
     return m(Tabs, [
       m(Tab, { link: 'Overview' }, 'Overview'),
       m(Tab, { link: 'Socket-Controls' }, 'Socket Controls'),
-      m(Tab, { link: 'Add-Remove-Sockets' }, 'Manage Sockets'),
-      m(Tab, { link: 'Add-Groups' }, 'Add Groups')
+      m(Tab, { link: 'Power-Usage' }, 'Power Usage')
     ])
   }
 }

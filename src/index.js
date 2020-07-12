@@ -1,8 +1,7 @@
 const m = require('mithril')
 const Overview = require('./pages/Overview')
 const SocketControls = require('./pages/SocketControls')
-const Management = require('./pages/ManageSocketsGroups')
-const AddGroups = require('./pages/AddGroups')
+const PowerUsage = require('./pages/PowerUsage')
 /* global localStorage */
 
 m.route(document.body, '/Login', {
@@ -18,16 +17,10 @@ m.route(document.body, '/Login', {
       else return SocketControls
     }
   },
-  '/Add-Remove-Sockets': {
+  '/Power-Usage': {
     onmatch: function () {
       if (!localStorage.getItem('token')) m.route.set('/Login')
-      else return Management
-    }
-  },
-  '/Add-Groups': {
-    onmatch: function () {
-      if (!localStorage.getItem('token')) m.route.set('/Login')
-      else return AddGroups
+      else return PowerUsage
     }
   },
   '/Login': require('./pages/Login'),
