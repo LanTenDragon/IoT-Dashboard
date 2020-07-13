@@ -59,8 +59,7 @@ function Piece () {
                           [
                             m('button', { onclick: () => SocketData.state.updateState(SocketData.state.list[i]._id, !SocketData.state.list[i].status) }, SocketData.state.list[i].status ? 'On' : 'Off')
                           ]
-                        ),
-                        m('input', { type: 'checkbox', style: { margin: 'auto' } })
+                        )
                       ]
                     )
                   )

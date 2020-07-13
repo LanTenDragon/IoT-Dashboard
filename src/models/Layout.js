@@ -50,13 +50,7 @@ const Layout = {
                       )
                     ]
                   ),
-                  m('br'),
-                  m('a', { class: 'w3-bar-item w3-button' },
-                    m('i', { class: 'fa fa-user' })
-                  ),
-                  m('a', { class: 'w3-bar-item w3-button' },
-                    m('i', { class: 'fa fa-cog' })
-                  )
+                  m('br')
                 ]
               )
             ]

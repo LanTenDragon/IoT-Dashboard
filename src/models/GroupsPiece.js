@@ -35,8 +35,7 @@ function Piece () {
                         [
                           m('input', { type: 'checkbox' })
                         ]
-                      ),
-                      m('input', { type: 'checkbox', style: { margin: 'auto' } })
+                      )
                     ]
                   )
                 )
