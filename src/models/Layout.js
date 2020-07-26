@@ -7,14 +7,17 @@ const Layout = {
     return m('',
       [
         m('button', {
-          class: 'w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey',
+          class: 'w3-bar-item w3-button w3-hide-large ' +
+            'w3-hover-none w3-hover-text-light-grey',
           onclick: function () {
-            if (mySidebar.style.display === 'block') {
-              mySidebar.style.display = 'none'
-              overlayBg.style.display = 'none'
+            if (sideBar.style.display === 'block') {
+              sideBar.style.display = 'none'
+              // eslint-disable-next-line no-undef
+              overlay.style.display = 'none'
             } else {
-              mySidebar.style.display = 'block'
-              overlayBg.style.display = 'block'
+              sideBar.style.display = 'block'
+              // eslint-disable-next-line no-undef
+              overlay.style.display = 'block'
             }
           }
         },
@@ -25,7 +28,7 @@ const Layout = {
         ),
         m('nav', {
           class: 'w3-sidebar w3-collapse w3-grey',
-          id: 'mySidebar',
+          id: 'sideBar',
           style: { 'z-index': '3', width: '250px', height: '100%' }
         },
         [
@@ -69,8 +72,8 @@ const Layout = {
         m('div', {
           class: 'w3-overlay w3-hide-large',
           onclick: function () {
-            mySidebar.style.display = 'none'
-            overlayBg.style.display = 'none'
+            sideBar.style.display = 'none'
+            overlay.style.display = 'none'
           },
           title: 'close side menu',
           id: 'myOverlay',

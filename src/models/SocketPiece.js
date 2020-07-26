@@ -18,7 +18,10 @@ const SocketData = {
       m.request({
         method: 'PUT',
         url: url + '/sockets/' + socketId + '/state',
-        body: { userid: localStorage.getItem('userid'), socketState: status ? 'on' : 'off' }
+        body: {
+          userid: localStorage.getItem('userid'),
+          socketState: status ? 'on' : 'off'
+        }
       })
         .then(function (items) {
           SocketData.state.list = items

@@ -92,7 +92,7 @@ const Overview = {
             ]
           ),
           m('div', { class: 'chart-container', id: 'canvas-container' },
-            m('canvas', { id: 'myChart', width: '100', height: '100' })
+            m('canvas', { id: 'liveChart', width: '100', height: '100' })
           )
         ]
       )

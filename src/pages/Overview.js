@@ -18,7 +18,7 @@ function chartPiece () {
     oncreate: function () {
       const ctx = document.getElementById('chart').getContext('2d')
       Chart.defaults.global.defaultFontColor = 'white'
-      const myChart = new Chart(ctx, {
+      const liveChart = new Chart(ctx, {
         type: 'line',
         data: {
           datasets: [{
@@ -78,12 +78,12 @@ function chartPiece () {
       MqttClient.on('message', function (topic, message) {
         const POJO = JSON.parse(message.toString())
         const dataset = POJO.id === '5f048ae68ade5f0a6c64905c' ? 0 : 1
-        myChart.data.datasets[dataset].data.push({
+        liveChart.data.datasets[dataset].data.push({
           x: Date.now(),
           y: POJO.power
         })
 
-        myChart.update({
+        liveChart.update({
           preservation: true
         })
       })
