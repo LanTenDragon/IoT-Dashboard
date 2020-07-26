@@ -28,6 +28,22 @@
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
   }
+
+  function openTab(TabName) {
+    let i
+    const tabs = document.getElementsByClassName('tab')
+    const tabButtons = document.getElementsByClassName('tabButton')
+    for (i = 0; i < tabs.length; i++) {
+      tabs[i].style.display = 'none'
+    }
+
+    for (i = 0; i < tabButtons.length; i++) {
+      tabButtons[i].classList.remove('w3-blue')
+    }
+
+    document.getElementById(TabName).style.display = 'block'
+    document.getElementById('button'+TabName).classList.add('w3-blue')
+  }
 </script>
 <script src="js/index.js"></script>
 </html>
